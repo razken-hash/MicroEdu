@@ -1,1 +1,29 @@
-spring.application.name=school-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+
+  instance:
+    hostname: localhost
+
+server:
+  port: 8030
+
+spring:
+  application:
+    name: Schools
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/schools
+    username: postgres
+    password: postgres
+
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
