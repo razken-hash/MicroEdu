@@ -1,6 +1,8 @@
 package com.microedu.student_service.services;
 
+import com.microedu.student_service.client.SchoolClient;
 import com.microedu.student_service.models.Student;
+import com.microedu.student_service.models.StudentWithSchool;
 import com.microedu.student_service.repositories.StudentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -11,7 +13,9 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class StudentService {
+
     final private StudentRepository studentRepository;
+    final private SchoolClient schoolClient;
 
     public List<Student> getAllStudents() {
         return (List<Student>) studentRepository.findAll();
@@ -31,5 +35,11 @@ public class StudentService {
 
     public List<Student> getStudentBySchoolId(Integer schoolId) {
         return studentRepository.getStudentBySchoolId(schoolId);
+    }
+
+    public StudentWithSchool getStudentWithSchool(Integer studentId) {
+        Student student = getStudentById(studentId);
+        Object school = schoolClient.getSchoolById(student.getSchoolId());
+        return new StudentWithSchool(student, school);
     }
 }

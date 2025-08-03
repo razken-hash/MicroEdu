@@ -1,6 +1,7 @@
 package com.microedu.student_service.controllers;
 
 import com.microedu.student_service.models.Student;
+import com.microedu.student_service.models.StudentWithSchool;
 import com.microedu.student_service.services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,11 @@ public class StudentController {
     @GetMapping("/by-school/{schoolId}")
     public List<Student> getStudentsBySchoolId(@PathVariable Integer schoolId) {
         return studentService.getStudentBySchoolId(schoolId);
+    }
+
+    @GetMapping("/{studentId}/school")
+    public StudentWithSchool getStudentSchool(@PathVariable Integer studentId) {
+        return studentService.getStudentWithSchool(studentId);
     }
 
     @PostMapping("/create")

@@ -27,3 +27,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+
+application:
+  config:
+    schools-url: http://localhost:8030/api/v1/schools
+
