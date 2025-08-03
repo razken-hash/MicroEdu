@@ -1,12 +1,14 @@
 package com.microedu.school_service.controllers;
 
 import com.microedu.school_service.models.School;
+import com.microedu.school_service.models.SchoolWithStudentsDTO;
 import com.microedu.school_service.services.SchoolService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/schools")
@@ -22,6 +24,11 @@ public class SchoolController {
     @GetMapping("/{schoolId}")
     public School getSchoolById(@PathVariable Integer schoolId) {
         return schoolService.getSchoolById(schoolId);
+    }
+
+    @GetMapping("/{schoolId}/students")
+    public SchoolWithStudentsDTO getSchoolWithStudents(@PathVariable Integer schoolId) {
+        return schoolService.getSchoolWithStudents(schoolId);
     }
 
     @PostMapping("/create")

@@ -24,6 +24,11 @@ public class StudentController {
         return studentService.getStudentById(studentId);
     }
 
+    @GetMapping("/by-school/{schoolId}")
+    public List<Student> getStudentsBySchoolId(@PathVariable Integer schoolId) {
+        return studentService.getStudentBySchoolId(schoolId);
+    }
+
     @PostMapping("/create")
     @ResponseStatus(value = HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student) {

@@ -28,4 +28,8 @@ public class StudentService {
     public void deleteStudent(Integer studentId) {
         studentRepository.deleteById(studentId);
     }
+
+    public List<Student> getStudentBySchoolId(Integer schoolId) {
+        return studentRepository.getStudentBySchoolId(schoolId);
+    }
 }
